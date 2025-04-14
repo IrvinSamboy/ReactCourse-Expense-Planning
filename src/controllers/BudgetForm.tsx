@@ -4,7 +4,7 @@ export default function BudgetForm() {
 
     const [budget, setBudget] = useState(0)
 
-    const isvalid = useMemo(() => !isNaN(budget) || budget !<= 0, [budget])
+    const isvalid = useMemo(() => !isNaN(budget) && !(budget <= 0), [budget])
 
     const handleBudget = (e: React.ChangeEvent<HTMLInputElement>) => {
         setBudget(e.target.valueAsNumber)
