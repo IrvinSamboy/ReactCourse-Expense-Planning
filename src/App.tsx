@@ -1,3 +1,5 @@
+import BudgetForm from "./controllers/BudgetForm";
+
 export default function App() {
   return (
     <>
@@ -7,7 +9,7 @@ export default function App() {
         </h1>
       </header>
       <div className="p-4 max-w-3xl mx-auto bg-white shadow-lg rounded-lg mt-10 pt-10">
-        <p>hi</p>
+        <BudgetForm />
       </div>
     </>
   )
