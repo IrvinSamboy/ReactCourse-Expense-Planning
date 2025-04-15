@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react"
-
+import { useBudget } from "../hooks/useBudget"
 export default function BudgetForm() {
 
     const [budget, setBudget] = useState(0)
+    const {dispatch} = useBudget()
 
     const isvalid = useMemo(() => !isNaN(budget) && !(budget <= 0), [budget])
 
@@ -15,6 +16,7 @@ export default function BudgetForm() {
         if(!isvalid) {
             console.log("The budget must be more than 0")
         }
+        dispatch({type: 'add-budget', payload: {budget: budget}})
     }
 
     return (
@@ -29,6 +31,7 @@ export default function BudgetForm() {
                     type="number"
                     className="p-2 border-gray-200 border-2 rounded-sm"
                     placeholder="Define your budget"
+                    value={budget}
                     onChange={handleBudget}
                 />
                 <input
