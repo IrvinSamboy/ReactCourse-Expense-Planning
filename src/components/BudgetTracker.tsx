@@ -5,7 +5,11 @@ export default function BudgetTracker() {
       <div className="flex justify-center items-center">
         <img src="/img/grafico.jpg" alt="" />
       </div>
-      <p>hI</p>
+      <div>
+        <button className="bg-pink-600 text-white font-semibold w-full p-2 rounded-sm cursor-pointer">
+            Reset app
+        </button>
+      </div>
     </div>
   )
 }
