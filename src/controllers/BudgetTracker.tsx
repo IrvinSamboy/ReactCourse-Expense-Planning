@@ -2,7 +2,7 @@
 export default function BudgetTracker() {
   return (
     <div>
-      <p>budget tracker</p>
+      <p>budget atracker</p>
     </div>
   )
 }
