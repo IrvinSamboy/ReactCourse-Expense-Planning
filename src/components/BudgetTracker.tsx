@@ -1,7 +1,11 @@
+import { useState } from "react";
 import ExpenseModal from "./Modals/ExpenseModal";
 import PricesComponent from "./PricesComponent";
 
 export default function BudgetTracker() {
+
+  const [visible, setVisible] = useState(false)
+
   return (
     <>
     <div className="grid grid-cols-2 gap-3">
@@ -26,7 +30,18 @@ export default function BudgetTracker() {
         />
       </div>
     </div>
-    <ExpenseModal />
+    <div 
+    className="absolute bottom-4 text-white text-6xl 
+              font-bold right-4 bg-blue-600 px-5 py-2.5 flex items-center 
+              justify-center rounded-full cursor-pointer"
+    onClick={() => setVisible(true)}
+    >
+      <p>+</p>
+    </div>
+    <ExpenseModal
+      visible={visible}
+      closeModal={setVisible}
+    />
     </>
   )
 }
