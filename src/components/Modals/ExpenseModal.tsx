@@ -56,6 +56,11 @@ export default function ExpenseModal({visible, closeModal} : ExpenseModalProps) 
                         type="text" 
                     />
                 </div>
+                <input
+                    type="submit"
+                    value="Register Exprense"
+                    className="w-full p-2 font-black disabled:opacity-40 bg-blue-600 text-white rounded-sm"
+                />
             </form>
         </div>
     </div>
