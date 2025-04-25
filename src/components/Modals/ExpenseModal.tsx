@@ -65,7 +65,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                         >
                             Category
                         </label>
-                        <select name="" id="">
+                        <select name="" id="" className="p-1 bg-gray-200 rounded-sm">
                             {
                                 categories.map((item) => (
                                     <option
@@ -85,7 +85,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                         >
                             Date
                         </label>
-                        <DatePicker />
+                        <DatePicker className={"p-1 bg-gray-200 rounded-sm"}/>
                     </div>
                     <input
                         type="submit"
