@@ -1,9 +1,12 @@
+import DatePicker from "react-date-picker";
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
 type ExpenseModalProps = {
     visible: boolean
     closeModal: (value: boolean) => void
 }
 
-export const categories = [
+const categories = [
     { id: '1', name: 'Savings', icon: 'ahorro' },
     { id: '2', name: 'Food', icon: 'comida' },
     { id: '3', name: 'Housing', icon: 'casa' },
@@ -73,6 +76,15 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                                 ))
                             }
                         </select>
+                    </div>
+                    <div className="flex flex-col space-y-2">
+                        <label
+                            htmlFor=""
+                            className="font-semibold"
+                        >
+                            Date
+                        </label>
+                        <DatePicker />
                     </div>
                     <input
                         type="submit"
