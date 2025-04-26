@@ -35,37 +35,39 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                 <form action="" className="space-y-4">
                     <div className="flex flex-col space-y-2">
                         <label
-                            htmlFor=""
+                            htmlFor="expenseName"
                             className="font-semibold"
                         >
                             Expense name
                         </label>
                         <input
+                            id="expenseName"
                             className="p-1 bg-gray-200 rounded-sm"
                             type="text"
                         />
                     </div>
                     <div className="flex flex-col space-y-2">
                         <label
-                            htmlFor=""
+                            htmlFor="quantity"
                             className="font-semibold"
                         >
                             Quantity
                         </label>
                         <input
+                            id="quantity"
                             className="p-1 bg-gray-200 rounded-sm"
                             type="text"
                         />
 
-                    </div>Category
+                    </div>
                     <div className="flex flex-col space-y-2">
                         <label
-                            htmlFor=""
+                            htmlFor="category"
                             className="font-semibold"
                         >
                             Category
                         </label>
-                        <select name="" id="" className="p-1 bg-gray-200 rounded-sm">
+                        <select name="" id="category" className="p-1 bg-gray-200 rounded-sm">
                             {
                                 categories.map((item) => (
                                     <option
@@ -80,12 +82,12 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                     </div>
                     <div className="flex flex-col space-y-2">
                         <label
-                            htmlFor=""
+                            htmlFor="date"
                             className="font-semibold"
                         >
                             Date
                         </label>
-                        <DatePicker className={"p-1 bg-gray-200 rounded-sm"}/>
+                        <DatePicker id="date" className={"p-1 bg-gray-200 rounded-sm"}/>
                     </div>
                     <input
                         type="submit"
