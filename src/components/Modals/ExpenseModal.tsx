@@ -29,6 +29,8 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
         date: new Date
     })
 
+    const [emptyInputName, setEmptyInputName] = useState("")
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
         const isNumberValue = e.target.id === "quantity"
         setExpense({
@@ -41,6 +43,15 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
         setExpense({
             ...expense,
             date: value
+        })
+    }
+    const handleSubmit = () => {
+        Object.entries(expense).map(item => {
+            if(typeof item[1] === "string" || typeof item === "number"){
+                if(item[1] === "" || item[1] === 0){
+                    setEmptyInputName(item[0])
+                }
+            }
         })
     }
 
