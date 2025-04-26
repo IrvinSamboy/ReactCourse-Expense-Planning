@@ -1,12 +1,13 @@
 import DatePicker from "react-date-picker";
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
+import { categoryType } from "../../types/ExpenseModalTypes";
 type ExpenseModalProps = {
     visible: boolean
     closeModal: (value: boolean) => void
 }
 
-const categories = [
+const categories : categoryType[] = [
     { id: '1', name: 'Savings', icon: 'ahorro' },
     { id: '2', name: 'Food', icon: 'comida' },
     { id: '3', name: 'Housing', icon: 'casa' },
