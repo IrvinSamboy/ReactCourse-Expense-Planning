@@ -36,7 +36,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
         })
     }
 
-    const handleCloseModal = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const handleCloseModal = () => {
         closeModal(false)
     }
 
