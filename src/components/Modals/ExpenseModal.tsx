@@ -4,6 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 import { categoryType, ExpenseModalState } from "../../types/ExpenseModalTypes";
 import { useState } from "react";
 import { Value } from "react-calendar/src/shared/types.js";
+import ErrorMessage from "../ErrorMessage";
 
 type ExpenseModalProps = {
     visible: boolean
@@ -45,10 +46,11 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
             date: value
         })
     }
-    const handleSubmit = () => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
         Object.entries(expense).map(item => {
             if(typeof item[1] === "string" || typeof item === "number"){
-                if(item[1] === "" || item[1] === 0){
+                if(item[1] === '' || item[1] === 0){
                     setEmptyInputName(item[0])
                 }
             }
@@ -69,7 +71,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                 onClick={e => e.stopPropagation()} 
                 className="p-4 max-w-3xl mx-auto space-y-4 bg-white shadow-lg rounded-lg mt-10 w-full pt-10">
                 <h2 className="text-center font-black text-2xl border-b-4 pb-4 border-blue-600">New Expense</h2>
-                <form action="" className="space-y-4">
+                <form action="" className="space-y-4" onSubmit={handleSubmit}>
                     <div className="flex flex-col space-y-2">
                         <label
                             htmlFor="expenseName"
@@ -84,6 +86,10 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                             value={expense.expenseName}
                             onChange={handleChange}
                         />
+                        {
+                            emptyInputName === "expenseName"&&
+                                <ErrorMessage>Expense name category has to have a value</ErrorMessage>
+                        }  
                     </div>
                     <div className="flex flex-col space-y-2">
                         <label
@@ -99,7 +105,10 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                             value={expense.quantity}
                             onChange={handleChange}
                         />
-
+                        {
+                            emptyInputName === "quantity"&&
+                                <ErrorMessage>Quantity category has to have a value</ErrorMessage>
+                        }
                     </div>
                     <div className="flex flex-col space-y-2">
                         <label
@@ -125,6 +134,10 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                                 ))
                             }
                         </select>
+                        {
+                            emptyInputName === "category"&& 
+                                <ErrorMessage>Category category has to have a value</ErrorMessage>
+                        }  
                     </div>
                     <div className="flex flex-col space-y-2">
                         <label
