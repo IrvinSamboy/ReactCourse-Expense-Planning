@@ -70,6 +70,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                             id="expenseName"
                             className="p-1 bg-gray-200 rounded-sm"
                             type="text"
+                            value={expense.expenseName}
                             onChange={handleChange}
                         />
                     </div>
@@ -84,6 +85,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                             id="quantity"
                             className="p-1 bg-gray-200 rounded-sm"
                             type="text"
+                            value={expense.quantity}
                             onChange={handleChange}
                         />
 
@@ -98,6 +100,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                         <select 
                             id="category" 
                             className="p-1 bg-gray-200 rounded-sm"
+                            value={expense.category}
                             onChange={handleChange}
                         >
                             {
