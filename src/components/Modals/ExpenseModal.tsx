@@ -3,6 +3,7 @@ import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import { categoryType, ExpenseModalState } from "../../types/ExpenseModalTypes";
 import { useState } from "react";
+import { Value } from "react-calendar/src/shared/types.js";
 
 type ExpenseModalProps = {
     visible: boolean
@@ -33,6 +34,13 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
         setExpense({
             ...expense,
             [e.target.id]: isNumberValue? +e.target.value : e.target.value 
+        })
+    }
+
+    const handleDatePickerChange = (value: Value) => {
+        setExpense({
+            ...expense,
+            date: value
         })
     }
 
@@ -111,9 +119,11 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                         >
                             Date
                         </label>
-                        <DatePicker 
+                        <DatePicker
                             id="date" 
                             className={"p-1 bg-gray-200 rounded-sm"}
+                            value={expense.date}
+                            onChange={handleDatePickerChange}
                         />
                     </div>
                     <input
