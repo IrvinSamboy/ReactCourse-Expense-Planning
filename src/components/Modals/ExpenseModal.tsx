@@ -1,7 +1,9 @@
 import DatePicker from "react-date-picker";
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
-import { categoryType } from "../../types/ExpenseModalTypes";
+import { categoryType, ExpenseModalState } from "../../types/ExpenseModalTypes";
+import { useState } from "react";
+
 type ExpenseModalProps = {
     visible: boolean
     closeModal: (value: boolean) => void
@@ -18,6 +20,21 @@ const categories : categoryType[] = [
 ];
 
 export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps) {
+
+    const [expense, setExpense] = useState<ExpenseModalState>({
+        expenseName: '',
+        category: '',
+        quantity: 0,
+        date: new Date
+    })
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+        const isNumberValue = e.target.id === "quantity"
+        setExpense({
+            ...expense,
+            [e.target.id]: isNumberValue? +e.target.value : e.target.value 
+        })
+    }
 
     const handleCloseModal = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         closeModal(false)
@@ -45,6 +62,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                             id="expenseName"
                             className="p-1 bg-gray-200 rounded-sm"
                             type="text"
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="flex flex-col space-y-2">
@@ -58,6 +76,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                             id="quantity"
                             className="p-1 bg-gray-200 rounded-sm"
                             type="text"
+                            onChange={handleChange}
                         />
 
                     </div>
@@ -68,7 +87,11 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                         >
                             Category
                         </label>
-                        <select name="" id="category" className="p-1 bg-gray-200 rounded-sm">
+                        <select 
+                            id="category" 
+                            className="p-1 bg-gray-200 rounded-sm"
+                            onChange={handleChange}
+                        >
                             {
                                 categories.map((item) => (
                                     <option
@@ -88,7 +111,10 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                         >
                             Date
                         </label>
-                        <DatePicker id="date" className={"p-1 bg-gray-200 rounded-sm"}/>
+                        <DatePicker 
+                            id="date" 
+                            className={"p-1 bg-gray-200 rounded-sm"}
+                        />
                     </div>
                     <input
                         type="submit"

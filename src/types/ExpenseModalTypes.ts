@@ -1,8 +1,10 @@
+import { Value } from "react-calendar/src/shared/types.js"
+
 export type ExpenseModalState = {
     expenseName: string
     quantity: number
-    category: categoryType
-    date: Date
+    category: string
+    date: Value
 }
 
 export type categoryType = {
