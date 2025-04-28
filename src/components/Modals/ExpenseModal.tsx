@@ -25,7 +25,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
 
     const [expense, setExpense] = useState<ExpenseModalState>({
         expenseName: '',
-        category: "",
+        category: categories[0].name,
         quantity: 0,
         date: new Date
     })
