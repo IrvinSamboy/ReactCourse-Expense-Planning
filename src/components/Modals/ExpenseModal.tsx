@@ -25,12 +25,12 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
 
     const [expense, setExpense] = useState<ExpenseModalState>({
         expenseName: '',
-        category: '',
+        category: "",
         quantity: 0,
         date: new Date
     })
 
-    const [emptyInputName, setEmptyInputName] = useState("")
+    const [emptyInputName, setEmptyInputName] = useState<string[]>([])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
         const isNumberValue = e.target.id === "quantity"
@@ -48,13 +48,25 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
     }
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        let emptyInputNameTempArr : string[] = []
         Object.entries(expense).map(item => {
-            if(typeof item[1] === "string" || typeof item === "number"){
+            if(typeof item[1] === "string" || typeof item[1] === "number"){
                 if(item[1] === '' || item[1] === 0){
-                    setEmptyInputName(item[0])
+                    if(!emptyInputName.includes(item[0])){
+                        emptyInputNameTempArr.push(item[0])
+                    }
+                }
+                else{
+                    const tempItem = emptyInputName.filter(itemFilter => itemFilter !== item[0])
+                    setEmptyInputName(tempItem)
                 }
             }
         })
+        if(emptyInputNameTempArr.length > 0) {
+            setEmptyInputName(emptyInputNameTempArr)
+        }
+        //console.log(emptyInputName)
+        //console.log(expense)
     }
 
     const handleCloseModal = () => {
@@ -87,7 +99,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                             onChange={handleChange}
                         />
                         {
-                            emptyInputName === "expenseName"&&
+                            emptyInputName.includes("expenseName")&&
                                 <ErrorMessage>Expense name category has to have a value</ErrorMessage>
                         }  
                     </div>
@@ -106,7 +118,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                             onChange={handleChange}
                         />
                         {
-                            emptyInputName === "quantity"&&
+                            emptyInputName.includes("quantity")&&
                                 <ErrorMessage>Quantity category has to have a value</ErrorMessage>
                         }
                     </div>
@@ -135,7 +147,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                             }
                         </select>
                         {
-                            emptyInputName === "category"&& 
+                            emptyInputName.includes("category")&& 
                                 <ErrorMessage>Category category has to have a value</ErrorMessage>
                         }  
                     </div>
