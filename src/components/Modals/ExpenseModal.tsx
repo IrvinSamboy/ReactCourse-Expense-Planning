@@ -22,18 +22,21 @@ const categories : categoryType[] = [
     { id: '7', name: 'Subscriptions', icon: 'suscripciones' },
 ];
 
-const {dispatch} = useBudget()
+
+const expenseDefaultValues = {
+    expenseName: '',
+    category: categories[0].name,
+    quantity: 0,
+    date: new Date
+}
 
 export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps) {
 
-    const [expense, setExpense] = useState<ExpenseItem>({
-        expenseName: '',
-        category: categories[0].name,
-        quantity: 0,
-        date: new Date
-    })
+    const [expense, setExpense] = useState<ExpenseItem>(expenseDefaultValues)
 
     const [emptyInputName, setEmptyInputName] = useState<string[]>([])
+
+    const {dispatch} = useBudget()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
         const isNumberValue = e.target.id === "quantity"
@@ -69,6 +72,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
             setEmptyInputName(emptyInputNameTempArr)
         }
         else {
+            setExpense(expenseDefaultValues)
             dispatch({type:"add-expense", payload: {expense} })
         }
     }
