@@ -5,6 +5,7 @@ import { categoryType, ExpenseItem } from "../../types/ExpenseModalTypes";
 import { useState } from "react";
 import { Value } from "react-calendar/src/shared/types.js";
 import ErrorMessage from "../ErrorMessage";
+import { useBudget } from "../../hooks/useBudget";
 
 type ExpenseModalProps = {
     visible: boolean
@@ -20,6 +21,8 @@ const categories : categoryType[] = [
     { id: '6', name: 'Health', icon: 'salud' },
     { id: '7', name: 'Subscriptions', icon: 'suscripciones' },
 ];
+
+const {dispatch} = useBudget()
 
 export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps) {
 
@@ -65,8 +68,9 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
         if(emptyInputNameTempArr.length > 0) {
             setEmptyInputName(emptyInputNameTempArr)
         }
-        //console.log(emptyInputName)
-        //console.log(expense)
+        else {
+            dispatch({type:"add-expense", payload: {expense} })
+        }
     }
 
     const handleCloseModal = () => {

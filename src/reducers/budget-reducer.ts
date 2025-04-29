@@ -25,14 +25,14 @@ export const budgetReducer = (
         }
     }
 
-    if(actions.type === "add-expense"){
+    else if(actions.type === "add-expense"){
         return {
             ...state,
             expense: [
                 ...state.expense,
                 {
                     ...actions.payload.expense,
-                    id: state.expense.length === 0? 0: state.expense[state.expense.length - 1].Id++
+                    id: state.expense.length === 0? 0: state.expense[state.expense.length - 1].id++
                 }
             ]
         }

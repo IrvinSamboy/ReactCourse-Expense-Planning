@@ -8,7 +8,7 @@ export type ExpenseItem = {
 }
 
 export type ExpenseState = ExpenseItem & {
-    Id: number
+    id: number
 }
 export type categoryType = {
     id: string;
