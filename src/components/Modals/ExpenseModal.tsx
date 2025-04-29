@@ -1,7 +1,7 @@
 import DatePicker from "react-date-picker";
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
-import { categoryType, ExpenseModalState } from "../../types/ExpenseModalTypes";
+import { categoryType, ExpenseItem } from "../../types/ExpenseModalTypes";
 import { useState } from "react";
 import { Value } from "react-calendar/src/shared/types.js";
 import ErrorMessage from "../ErrorMessage";
@@ -23,7 +23,7 @@ const categories : categoryType[] = [
 
 export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps) {
 
-    const [expense, setExpense] = useState<ExpenseModalState>({
+    const [expense, setExpense] = useState<ExpenseItem>({
         expenseName: '',
         category: categories[0].name,
         quantity: 0,
