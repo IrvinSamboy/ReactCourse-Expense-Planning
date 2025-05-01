@@ -1,27 +1,16 @@
 import DatePicker from "react-date-picker";
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
-import { categoryType, ExpenseItem } from "../../types/ExpenseModalTypes";
+import { ExpenseItem } from "../../types/ExpenseModalTypes";
 import { useState } from "react";
 import { Value } from "react-calendar/src/shared/types.js";
 import ErrorMessage from "../ErrorMessage";
 import { useBudget } from "../../hooks/useBudget";
-
+import { categories } from "../../db/categories";
 type ExpenseModalProps = {
     visible: boolean
     closeModal: (value: boolean) => void
 }
-
-const categories : categoryType[] = [
-    { id: '1', name: 'Savings', icon: 'ahorro' },
-    { id: '2', name: 'Food', icon: 'comida' },
-    { id: '3', name: 'Housing', icon: 'casa' },
-    { id: '4', name: 'Miscellaneous Expenses', icon: 'gastos' },
-    { id: '5', name: 'Leisure', icon: 'ocio' },
-    { id: '6', name: 'Health', icon: 'salud' },
-    { id: '7', name: 'Subscriptions', icon: 'suscripciones' },
-];
-
 
 const expenseDefaultValues = {
     expenseName: '',
