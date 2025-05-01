@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import BudgetForm from "./components/BudgetForm";
 import { useBudget } from "./hooks/useBudget";
 import BudgetTracker from "./components/BudgetTracker";
+import ExpenseList from "./components/ExpenseList";
 
 export default function App() {
 
@@ -19,6 +20,7 @@ export default function App() {
       <div className="p-4 max-w-3xl mx-auto bg-white shadow-lg rounded-lg mt-10 pt-10">
         {showBudgetTracker? <BudgetTracker/> : <BudgetForm />}
       </div>
+      {showBudgetTracker&& <ExpenseList />}
     </>
   )
 }
