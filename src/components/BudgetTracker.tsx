@@ -1,10 +1,14 @@
-import { useState } from "react";
 import ExpenseModal from "./Modals/ExpenseModal";
 import PricesComponent from "./PricesComponent";
+import { useBudget } from "../hooks/useBudget";
 
 export default function BudgetTracker() {
 
-  const [visible, setVisible] = useState(false)
+  const {dispatch, state} = useBudget()
+
+  const closeModalFunction = (closeModal: boolean) => {
+    dispatch({type: "modal-actions", payload: {closeModal: closeModal}})
+  }
 
   return (
     <>
@@ -34,13 +38,13 @@ export default function BudgetTracker() {
     className="fixed bottom-4 text-white text-6xl 
               font-bold right-4 bg-blue-600 px-4 py-1.5 flex items-center 
               justify-center rounded-full cursor-pointer"
-    onClick={() => setVisible(true)}
+    onClick={() => closeModalFunction(false)}
     >
       <p>+</p>
     </div>
     <ExpenseModal
-      visible={visible}
-      closeModal={setVisible}
+      visible={state.closeModal!}
+      closeModal={closeModalFunction}
     />
     </>
   )

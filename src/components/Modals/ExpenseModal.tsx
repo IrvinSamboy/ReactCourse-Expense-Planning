@@ -67,7 +67,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
     }
 
     const handleCloseModal = () => {
-        closeModal(false)
+        closeModal(true)
     }
 
     return (
