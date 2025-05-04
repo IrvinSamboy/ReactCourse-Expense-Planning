@@ -31,7 +31,7 @@ export default function BudgetTracker() {
       </div>
     </div>
     <div 
-    className="absolute bottom-4 text-white text-6xl 
+    className="fixed bottom-4 text-white text-6xl 
               font-bold right-4 bg-blue-600 px-4 py-1.5 flex items-center 
               justify-center rounded-full cursor-pointer"
     onClick={() => setVisible(true)}

@@ -32,7 +32,6 @@ export default function ExpenseList() {
             </LeadingActions>
         )
     }
-    console.log(state.expense)
     return (
         <div className="p-4 max-w-3xl mx-auto rounded-lg mt-4 pt-10">
             <h2 className="text-2xl font-bold mb-10">Expense list</h2>
