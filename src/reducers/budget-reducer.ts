@@ -5,7 +5,8 @@ export type budgetActions =
     {type: 'modal-actions', payload: {closeModal: boolean}} |
     {type: 'add-expense', payload: {expense: ExpenseItem}} |
     {type: 'delete-expense', payload: {expenseId: number}} |
-    {type: 'add-expenseId-to-edit', payload: {expenseId: number}}
+    {type: 'add-expenseId-to-edit', payload: {expenseId: number}} |
+    {type: 'edit-expense', paylaod: {expense: ExpenseItem}}
 
 export type budgetState = {
     budget: number
@@ -64,6 +65,14 @@ export const budgetReducer = (
             ...state,
             expenseIdToEdit: actions.payload.expenseId,
             closeModal: false
+        }
+    }
+
+    else if(actions.type === "edit-expense"){
+        return {
+            ...state,
+            expense: state.expense.map(item => item.id === state.expenseIdToEdit? actions.paylaod.expense : item),
+            expenseIdToEdit: undefined
         }
     }
 
