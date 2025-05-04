@@ -2,7 +2,7 @@ import DatePicker from "react-date-picker";
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import { ExpenseItem } from "../../types/ExpenseModalTypes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Value } from "react-calendar/src/shared/types.js";
 import ErrorMessage from "../ErrorMessage";
 import { useBudget } from "../../hooks/useBudget";
@@ -25,7 +25,22 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
 
     const [emptyInputName, setEmptyInputName] = useState<string[]>([])
 
-    const {dispatch} = useBudget()
+    const {dispatch, state} = useBudget()
+
+    useEffect(() => {
+        const expenseToEdit = state.expense.filter(item => item.id === state.expenseIdToEdit)[0]
+        if(expenseToEdit) {
+            setExpense({
+                expenseName: expenseToEdit.expenseName,
+                category: expenseToEdit.category,
+                quantity: expenseToEdit.quantity,
+                date: expenseToEdit.date
+            })
+        }
+        else {
+            setExpense(expenseDefaultValues)
+        }
+    }, [state.expenseIdToEdit])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
         const isNumberValue = e.target.id === "quantity"

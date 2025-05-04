@@ -10,11 +10,11 @@ export default function ExpenseList() {
 
     const category = useCallback((id: string) => categories.filter(item => item.id === id)[0], [])
 
-    const leadingActions = () => {
+    const leadingActions = (expenseId: number) => {
         return (
             <LeadingActions>
                 <SwipeAction
-                    onClick={() => console.info('swipe action triggered')}
+                    onClick={() => dispatch({type: "add-expenseId-to-edit", payload: {expenseId: expenseId}})}
                 >
                     Edit
                 </SwipeAction>
@@ -46,7 +46,7 @@ export default function ExpenseList() {
                             state.expense.map(item => (
                                 <SwipeableList key={`expense${item.id}`}>
                                     <SwipeableListItem
-                                        leadingActions={leadingActions()}
+                                        leadingActions={leadingActions(item.id)}
                                         trailingActions={trailingActions(item.id)}
                                     >
                                         <div className="flex select-none items-center w-full justify-between p-8 border-b border-gray-400">
