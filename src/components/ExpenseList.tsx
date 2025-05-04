@@ -48,7 +48,7 @@ export default function ExpenseList() {
                                         leadingActions={leadingActions()}
                                         trailingActions={trailingActions()}
                                     >
-                                        <div className="flex items-center w-full justify-between p-8 border-b border-gray-400">
+                                        <div className="flex select-none items-center w-full justify-between p-8 border-b border-gray-400">
                                             <div className="flex items-center gap-4">
                                                 <img src={`/img/icono_${category(item.category).icon}.svg`} className="h-28" alt="" />
                                                 <div>

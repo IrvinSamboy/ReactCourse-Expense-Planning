@@ -73,7 +73,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
     return (
         <div
             className={`size-full bg-black/40 flex items-center 
-                    justify-center absolute right-0 top-0 ${!visible && "hidden"}`}
+                    justify-center absolute right-0 top-0 z-10 ${!visible && "hidden"}`}
             onClick={handleCloseModal}
         >
             <div
