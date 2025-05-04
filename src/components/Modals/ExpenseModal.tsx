@@ -77,7 +77,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
         }
         else {
             setExpense(expenseDefaultValues)
-            if(state.expenseIdToEdit) {
+            if(state.expenseIdToEdit !== undefined) {
                 dispatch({type: "edit-expense", paylaod: {expense}})
             }
             else {

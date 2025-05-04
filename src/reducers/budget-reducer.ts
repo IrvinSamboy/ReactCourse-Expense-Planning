@@ -69,9 +69,13 @@ export const budgetReducer = (
     }
 
     else if(actions.type === "edit-expense"){
+        console.log(state.expense.filter(item => item.id !== state.expenseIdToEdit))
         return {
             ...state,
-            expense: state.expense.map(item => item.id === state.expenseIdToEdit? actions.paylaod.expense : item),
+            expense: state.expense.map(item => item.id === state.expenseIdToEdit? {
+                ...actions.paylaod.expense,
+                id: state.expenseIdToEdit
+            } : item),
             expenseIdToEdit: undefined
         }
     }
