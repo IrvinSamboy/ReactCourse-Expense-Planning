@@ -117,7 +117,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                         />
                         {
                             emptyInputName.includes("expenseName")&&
-                                <ErrorMessage>Expense name category has to have a value</ErrorMessage>
+                                <ErrorMessage>Expense name has to have a value</ErrorMessage>
                         }  
                     </div>
                     <div className="flex flex-col space-y-2">
@@ -136,7 +136,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                         />
                         {
                             emptyInputName.includes("quantity")&&
-                                <ErrorMessage>Quantity category has to have a value</ErrorMessage>
+                                <ErrorMessage>Quantity has to have a value</ErrorMessage>
                         }
                     </div>
                     <div className="flex flex-col space-y-2">
@@ -165,7 +165,7 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
                         </select>
                         {
                             emptyInputName.includes("category")&& 
-                                <ErrorMessage>Category category has to have a value</ErrorMessage>
+                                <ErrorMessage>Category has to have a value</ErrorMessage>
                         }  
                     </div>
                     <div className="flex flex-col space-y-2">
