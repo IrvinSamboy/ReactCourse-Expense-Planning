@@ -2,7 +2,8 @@ import { ExpenseItem, ExpenseState } from "../types/ExpenseModalTypes"
 
 export type budgetActions = 
     {type: 'add-budget', payload: {budget: number}} |
-    {type: 'add-expense', payload: {expense: ExpenseItem}}
+    {type: 'add-expense', payload: {expense: ExpenseItem}} |
+    {type: 'delete-expense', payload: {expenseId: number}}
 
 export type budgetState = {
     budget: number
@@ -35,6 +36,13 @@ export const budgetReducer = (
                     id: state.expense.length === 0? 0: state.expense[state.expense.length - 1].id++
                 }
             ]
+        }
+    }
+
+    else if(actions.type === "delete-expense"){
+        return {
+            ...state,
+            expense: state.expense.filter(item => item.id !== actions.payload.expenseId)
         }
     }
 

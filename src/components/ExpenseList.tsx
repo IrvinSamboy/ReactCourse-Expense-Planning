@@ -6,31 +6,32 @@ import 'react-swipeable-list/dist/styles.css';
 import { numberFormatter } from "../utils/formatCurrencyNumner";
 export default function ExpenseList() {
 
-    const { state } = useBudget()
+    const { state, dispatch } = useBudget()
 
     const category = useCallback((id: string) => categories.filter(item => item.id === id)[0], [])
 
     const leadingActions = () => {
         return (
-            <TrailingActions>
+            <LeadingActions>
                 <SwipeAction
                     onClick={() => console.info('swipe action triggered')}
                 >
                     Edit
                 </SwipeAction>
-            </TrailingActions>
+            </LeadingActions>
 
         )
     }
-    const trailingActions = () => {
+    const trailingActions = (expenseId: number) => {
         return (
-            <LeadingActions>
+            <TrailingActions>
                 <SwipeAction
-                    onClick={() => console.info('swipe action triggered')}
+                    onClick={() => dispatch({type: "delete-expense", payload: {expenseId: expenseId}})}
+                    destructive={true}
                 >
                     Delete
                 </SwipeAction>
-            </LeadingActions>
+            </TrailingActions>
         )
     }
     return (
@@ -46,7 +47,7 @@ export default function ExpenseList() {
                                 <SwipeableList key={`expense${item.id}`}>
                                     <SwipeableListItem
                                         leadingActions={leadingActions()}
-                                        trailingActions={trailingActions()}
+                                        trailingActions={trailingActions(item.id)}
                                     >
                                         <div className="flex select-none items-center w-full justify-between p-8 border-b border-gray-400">
                                             <div className="flex items-center gap-4">
