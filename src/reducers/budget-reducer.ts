@@ -2,16 +2,19 @@ import { ExpenseItem, ExpenseState } from "../types/ExpenseModalTypes"
 
 export type budgetActions = 
     {type: 'add-budget', payload: {budget: number}} |
+    {type: 'modal-actions', payload: {closeModal: boolean}} |
     {type: 'add-expense', payload: {expense: ExpenseItem}} |
-    {type: 'delete-expense', payload: {expenseId: number}}
+    {type: 'delete-expense', payload: {expenseId: number}}     
 
 export type budgetState = {
     budget: number
+    closeModal: boolean
     expense: ExpenseState[]
 }
 
 export const initialState : budgetState = {
     budget: 0,
+    closeModal: true,
     expense: []
 }
 
@@ -23,6 +26,13 @@ export const budgetReducer = (
         return {
             ...state,
             budget: actions.payload.budget
+        }
+    }
+
+    else if(actions.type=== "modal-actions"){
+        return{
+            ...state,
+            closeModa: actions.payload.closeModal
         }
     }
 
