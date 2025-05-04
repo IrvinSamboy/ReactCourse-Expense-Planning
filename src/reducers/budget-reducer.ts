@@ -36,7 +36,8 @@ export const budgetReducer = (
     else if(actions.type=== "modal-actions"){
         return{
             ...state,
-            closeModal: actions.payload.closeModal
+            closeModal: actions.payload.closeModal,
+            expenseIdToEdit: !actions.payload.closeModal? undefined: state.expenseIdToEdit
         }
     }
 
@@ -49,7 +50,8 @@ export const budgetReducer = (
                     ...actions.payload.expense,
                     id: state.expense.length === 0? 0: state.expense[state.expense.length - 1].id++
                 }
-            ]
+            ],
+            closeModal: true
         }
     }
 
@@ -69,14 +71,14 @@ export const budgetReducer = (
     }
 
     else if(actions.type === "edit-expense"){
-        console.log(state.expense.filter(item => item.id !== state.expenseIdToEdit))
         return {
             ...state,
             expense: state.expense.map(item => item.id === state.expenseIdToEdit? {
                 ...actions.paylaod.expense,
                 id: state.expenseIdToEdit
             } : item),
-            expenseIdToEdit: undefined
+            expenseIdToEdit: undefined,
+            closeModal: true
         }
     }
 
