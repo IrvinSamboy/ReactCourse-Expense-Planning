@@ -3,6 +3,7 @@ import { categories } from "../db/categories"
 import { useBudget } from "../hooks/useBudget"
 import { useCallback } from "react"
 import 'react-swipeable-list/dist/styles.css';
+import { numberFormatter } from "../utils/formatCurrencyNumner";
 export default function ExpenseList() {
 
     const { state } = useBudget()
@@ -56,7 +57,7 @@ export default function ExpenseList() {
                                                     <p className="text-sm text-gray-600">{item.date?.toString()}</p>
                                                 </div>
                                             </div>
-                                            <p className="text-3xl font-black">${item.quantity}</p>
+                                            <p className="text-3xl font-black">{numberFormatter("en-US", "USD").format(item.quantity)}</p>
                                         </div>
                                     </SwipeableListItem>
                                 </SwipeableList>
