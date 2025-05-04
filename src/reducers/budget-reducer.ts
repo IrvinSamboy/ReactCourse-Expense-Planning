@@ -32,7 +32,7 @@ export const budgetReducer = (
     else if(actions.type=== "modal-actions"){
         return{
             ...state,
-            closeModa: actions.payload.closeModal
+            closeModal: actions.payload.closeModal
         }
     }
 

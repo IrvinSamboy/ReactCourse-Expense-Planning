@@ -43,7 +43,7 @@ export default function BudgetTracker() {
       <p>+</p>
     </div>
     <ExpenseModal
-      visible={state.closeModal!}
+      visible={!state.closeModal}
       closeModal={closeModalFunction}
     />
     </>
