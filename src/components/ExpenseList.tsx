@@ -11,16 +11,25 @@ export default function ExpenseList() {
 
     const leadingActions = () => {
         return (
-            <LeadingActions>
-                Delete
-            </LeadingActions>
+            <TrailingActions>
+                <SwipeAction
+                    onClick={() => console.info('swipe action triggered')}
+                >
+                    Edit
+                </SwipeAction>
+            </TrailingActions>
+
         )
     }
     const trailingActions = () => {
         return (
-            <TrailingActions>
-                Delete
-            </TrailingActions>
+            <LeadingActions>
+                <SwipeAction
+                    onClick={() => console.info('swipe action triggered')}
+                >
+                    Delete
+                </SwipeAction>
+            </LeadingActions>
         )
     }
     console.log(state.expense)
@@ -34,12 +43,12 @@ export default function ExpenseList() {
                     <div className="bg-white rounded-lg">
                         {
                             state.expense.map(item => (
-                                <SwipeableList>
+                                <SwipeableList key={`expense${item.id}`}>
                                     <SwipeableListItem
                                         leadingActions={leadingActions()}
                                         trailingActions={trailingActions()}
                                     >
-                                        <div className="flex items-center justify-between p-8 border-b border-gray-400">
+                                        <div className="flex items-center w-full justify-between p-8 border-b border-gray-400">
                                             <div className="flex items-center gap-4">
                                                 <img src={`/img/icono_${category(item.category).icon}.svg`} className="h-28" alt="" />
                                                 <div>
@@ -48,7 +57,7 @@ export default function ExpenseList() {
                                                     <p className="text-sm text-gray-600">{item.date?.toString()}</p>
                                                 </div>
                                             </div>
-                                            <p className="text-3xl font-bold">$100</p>
+                                            <p className="text-3xl font-black">${item.quantity}</p>
                                         </div>
                                     </SwipeableListItem>
                                 </SwipeableList>

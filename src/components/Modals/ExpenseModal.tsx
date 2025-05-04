@@ -14,7 +14,7 @@ type ExpenseModalProps = {
 
 const expenseDefaultValues = {
     expenseName: '',
-    category: categories[0].name,
+    category: categories[0].id,
     quantity: 0,
     date: new Date
 }
