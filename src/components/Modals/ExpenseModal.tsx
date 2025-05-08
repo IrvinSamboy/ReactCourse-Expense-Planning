@@ -99,7 +99,14 @@ export default function ExpenseModal({ visible, closeModal }: ExpenseModalProps)
             <div
                 onClick={e => e.stopPropagation()} 
                 className="p-4 max-w-3xl mx-auto space-y-4 bg-white shadow-lg rounded-lg mt-10 w-full pt-10">
-                <h2 className="text-center font-black text-2xl border-b-4 pb-4 border-blue-600">New Expense</h2>
+                <h2 className="text-center font-black text-2xl border-b-4 pb-4 border-blue-600">
+                    {
+                        state.expenseIdToEdit === undefined? 
+                        "New Expense"
+                        :
+                        "Edit Expense"
+                    }
+                </h2>
                 <form action="" className="space-y-4" onSubmit={handleSubmit}>
                     <div className="flex flex-col space-y-2">
                         <label

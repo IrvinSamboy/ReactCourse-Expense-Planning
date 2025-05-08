@@ -16,9 +16,9 @@ export type budgetState = {
 }
 
 export const initialState : budgetState = {
-    budget: 0,
+    budget: Number(localStorage.getItem("budget")) || 0,
     closeModal: true,
-    expense: [],
+    expense: JSON.parse(localStorage.getItem("expense") || "[]"),
     expenseIdToEdit: undefined
 }
 
@@ -27,6 +27,9 @@ export const budgetReducer = (
     actions: budgetActions
 ) => {
     if(actions.type === "add-budget") {
+
+        localStorage.setItem("budget", actions.payload.budget.toString())
+
         return {
             ...state,
             budget: actions.payload.budget
@@ -42,7 +45,8 @@ export const budgetReducer = (
     }
 
     else if(actions.type === "add-expense"){
-        return {
+
+        const newState = {
             ...state,
             expense: [
                 ...state.expense,
@@ -53,6 +57,10 @@ export const budgetReducer = (
             ],
             closeModal: true
         }
+        
+        localStorage.setItem("expense", JSON.stringify(newState.expense))
+
+        return newState
     }
 
     else if(actions.type === "delete-expense"){
@@ -71,7 +79,8 @@ export const budgetReducer = (
     }
 
     else if(actions.type === "edit-expense"){
-        return {
+        
+        const newState = {
             ...state,
             expense: state.expense.map(item => item.id === state.expenseIdToEdit? {
                 ...actions.paylaod.expense,
@@ -80,6 +89,10 @@ export const budgetReducer = (
             expenseIdToEdit: undefined,
             closeModal: true
         }
+
+        localStorage.setItem("expense", JSON.stringify(newState.expense))
+
+        return newState
     }
 
     return state
